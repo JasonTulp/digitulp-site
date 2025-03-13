@@ -1,19 +1,16 @@
 "use client";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/nav-bar";
 import Link from "next/link";
 import HeaderLogo from "@/components/header";
 import SiteHeader from "@/components/header"; // Import Link from Next.js
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
+import { Gabarito } from "next/font/google";
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const gabarito = Gabarito({
+    variable: "--font-gabarito",
     subsets: ["latin"],
+    weight: ["400", "500", "600", "700"], // Adjust weights as needed
 });
 
 export default function RootLayout({
@@ -28,12 +25,12 @@ export default function RootLayout({
             <title>Digitulp</title>
         </head>
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased bg-mid text-text `}
+            className={`${gabarito.variable} antialiased bg-mid text-text `}
         >
 
         <div className={"flex flex-col justify-between min-h-screen  bg-gradient-to-t from-mid to-dark"}>
             {/*Header*/}
-            <SiteHeader />
+            {/*<SiteHeader />*/}
 
             {/*Main Content*/}
             <main id="container" className="mb-auto flex flex-col items-center">
