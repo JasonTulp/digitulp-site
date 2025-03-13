@@ -38,9 +38,9 @@ export default function RootLayout({
             {/*Main Content*/}
             <main id="container" className="mb-auto flex flex-col items-center">
                 {/*<div className="flex items-start p-4 w-full h-full lg:w-3/4 xl:w-1/2 bg-dark shadow-md border-x-2 border-border">*/}
-                <div className="flex items-start p-4 w-full h-full lg:w-3/4 xl:w-1/2">
-                    {children}
-                </div>
+                {/*<div className="flex items-start p-4 w-full h-full lg:w-3/4 xl:w-1/2">*/}
+                {/*</div>*/}
+                {children}
             </main>
 
             <footer className="bg-mid-light text-text p-10 w-full   border-t-4 border-border">
