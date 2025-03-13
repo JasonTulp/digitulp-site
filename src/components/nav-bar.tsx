@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
-import {getSession, signOut, useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
-import { Session } from "next-auth";
 
 export default function NavBar() {
     const router = useRouter(); // Redirect if no session
