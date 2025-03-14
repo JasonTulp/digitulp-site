@@ -47,19 +47,19 @@ export default function Home() {
             </div>
 
             {/*Clouds*/}
-            <ShapeSpawner extraClassName={"!bg-white"} maxOpacity={0.05} shapeCount={15} minSize={400} maxSize={700} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={windowHeight + 1000}/>
+            <ShapeSpawner extraClassName={"!bg-white"} maxOpacity={0.1} shapeCount={30} minSize={400} maxSize={700} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={windowHeight + 1000}/>
 
             {/*Back Pillars*/}
-            <ShapeSpawner  maxOpacity={0.06} shapeCount={10} minSize={400} maxSize={600} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={windowHeight * 0.5}/>
+            <ShapeSpawner  maxOpacity={0.06} shapeCount={20} minSize={400} maxSize={600} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={windowHeight * 0.5}/>
             {/*Normal Pillars*/}
-            <ShapeSpawner maxOpacity={1} shapeCount={50} minSize={10} maxSize={410} parallaxMultiplier={0.5} fixedHeight={1000}/>
+            <ShapeSpawner maxOpacity={1} shapeCount={100} minSize={10} maxSize={410} parallaxMultiplier={0.5} fixedHeight={1000}/>
             {/*Little circles*/}
-            <ParticleSpawner maxOpacity={1} particleCount={30} minSize={1} maxSize={20} ySpawn={0} maxYHeight={windowHeight * 0.4} maxLifetime={10} minLifetime={5}/>
+            <ParticleSpawner maxOpacity={1} particleCount={60} minSize={1} maxSize={20} ySpawn={0} maxYHeight={windowHeight * 0.4} maxLifetime={10} minLifetime={5}/>
 
             {/* Black Section */}
             <div className="h-28 -mt-28 w-full bg-gradient-to-t from-dark to-transparent"></div>
             <div className="flex items-center h-[100vh] bg-dark z-20 relative">
-                <p className={"text-5xl w-full text-center text-white"}>words and stuff</p>
+                <p className={"w-full text-center text-white text-lg sm:text-xl md:text-2xl lg:text-3xl"}>words and stuff</p>
             </div>
         </div>
     );

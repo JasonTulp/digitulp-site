@@ -30,8 +30,9 @@ export default function ParticleSpawner({ particleCount, minSize, maxSize, maxOp
 
     useEffect(() => {
         const opacity = maxOpacity ?? 1;
+        const width = Math.max(window.innerWidth, 3840);
         const newParticles = Array.from({ length: particleCount }, (_, i) => ({
-            x: Math.random() * window.innerWidth * 1.2,
+            x: Math.random() * width * 1.2,
             y: ySpawn,
             endY: Math.random() * (maxYHeight - ySpawn) + ySpawn,
             size: Math.random() * (maxSize - minSize) + minSize,
@@ -67,11 +68,11 @@ export default function ParticleSpawner({ particleCount, minSize, maxSize, maxOp
                             height: particle.size,
                             left: particle.x - particle.size / 2,
                             top: particle.y,
-                            opacity: particle.opacity,
+                            opacity: particle.opacity + 0.01,
                         }}
                         animate={{
                             // left: particle.x - Math.random() * randomSize,
-                            opacity: [0, particle.opacity, particle.opacity, 0],
+                            opacity: [0.01, particle.opacity, particle.opacity, 0.01],
                             top: particle.y - particle.endY,
                         }}
                         transition={{

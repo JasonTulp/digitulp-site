@@ -41,13 +41,14 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
         const spread = ySpread ?? 300;
         const offset = yOffset ?? window.innerHeight / 4;
         const opacity = maxOpacity ?? 1;
+        const width = Math.max(window.innerWidth, 3840);
         const newShapes = Array.from({ length: shapeCount }, (_, i) => ({
             id: i,
-            x: Math.random() * window.innerWidth * 1.2,
+            x: Math.random() * width * 1.2,
             y: Math.random() * spread - offset,
             size: Math.random() * (maxSize - minSize) + minSize,
             animation_duration: Math.random() * 10 + 10,
-            opacity: Math.random() * opacity,
+            opacity: Math.random() * opacity + 0.001,
         }));
         setShapes(newShapes);
     }, []);
