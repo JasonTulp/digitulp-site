@@ -6,7 +6,7 @@ import * as motion from "motion/react-client";
 export default function Title() {
     const [relativeMousePos, setRelativeMousePos] = useState<number[] | null>(null);
     const titleText = "DIGITULP";
-    const [windowWidth, setWindowWidth] = useState(1000); // Default value for SSR
+    const [windowWidth, setWindowWidth] = useState(0); // Default value for SSR
 
     useEffect(() => {
         const handleResize = () => {
@@ -66,9 +66,9 @@ export default function Title() {
 
     const getTextMultiplier = (width: number) => {
         let multiplier = 1;
-        if (width < 640) multiplier = 0.6; // sm
-        else if (width < 768) multiplier = 0.8; // md
-        else if (width < 1024) multiplier = 0.9; // lg
+        if (width < 640) multiplier = 0.4; // sm
+        else if (width < 768) multiplier = 0.6; // md
+        else if (width < 1024) multiplier = 0.8; // lg
         return multiplier
     }
 
@@ -95,7 +95,7 @@ export default function Title() {
                             {l}
                         </motion.h1>
                         <motion.h1
-                            className={`font-bold text-black font-chango -mt-24 sm:-mt-32 md:-mt-36 lg:-mt-40 z-10 relative`}
+                            className={`font-bold text-black font-chango -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 z-10 relative`}
                             // style={{ fontSize: `${calculateLetterSize(i)}rem` }}
                             style={{
                                 fontSize: `${getTextMultiplier(windowWidth) * 7}rem`,
@@ -116,8 +116,8 @@ export default function Title() {
                     </div>
                 ))}
             </div>
-            <hr className="border-t-2 border-white z-20 -mt-2 sm:mt-1 md:mt-2 lg:mt-4 w-[420px] sm:w-[560px] md:w-[630px] lg:w-[700px]" />
-            <div className={"flex relative items-center font-bold text-white text-opacity-70 mt-2 text-lg sm:text-xl md:text-2xl lg:text-3xl z-50"}>
+            <hr className="border-t-2 border-white z-20 -mt-6 sm:-mt-2 md:mt-2 lg:mt-4 w-[280px] sm:w-[420px] md:w-[560px] lg:w-[700px]" />
+            <div className={"flex relative items-center font-bold text-white text-opacity-70 mt-2 text-sm sm:text-xl md:text-2xl lg:text-3xl z-50"}>
                 <motion.h2
                     className="text-white cursor-pointer"
                     initial={{color: "#FFFFFF", scale: 1}}
