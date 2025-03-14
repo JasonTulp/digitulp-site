@@ -28,10 +28,10 @@ export default {
         // "gray-light": "#B9B9B9",
         // "gray-dark": "#666666",
       },
-      // fontFamily: {
-      //   display: ["apotek", "sans-serif"],
-      //   body: ["gopher", "sans-serif"],
-      // },
+      fontFamily: {
+        chango: ['var(--font-chango)'],
+        gabarito: ['var(--font-gabarito)'],
+      },
       // boxShadow: {
       //   "sharp": "4px 4px 0px 0px",
       //   "sharp-2": "2px 2px 0px 0px",

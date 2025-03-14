@@ -1,16 +1,19 @@
 "use client";
 import "./globals.css";
-import NavBar from "@/components/nav-bar";
-import Link from "next/link";
-import HeaderLogo from "@/components/header";
-import SiteHeader from "@/components/header"; // Import Link from Next.js
+import cn from '@sindresorhus/class-names';
 
-import { Gabarito } from "next/font/google";
+import { Gabarito, Chango } from "next/font/google";
 
 const gabarito = Gabarito({
     variable: "--font-gabarito",
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"], // Adjust weights as needed
+});
+
+const chango = Chango({
+    variable: "--font-chango",
+    subsets: ["latin"],
+    weight: ["400"]
 });
 
 export default function RootLayout({
@@ -20,15 +23,18 @@ export default function RootLayout({
 }>) {
     // dbConnect().then(r => console.log("Connected to database"));
     return (
-        <html lang="en">
+        <html
+            lang="en"
+            className={cn(gabarito.variable, chango.variable)}
+        >
         <head>
             <title>Digitulp</title>
         </head>
         <body
-            className={`${gabarito.variable} antialiased bg-mid text-text `}
+            className={`font-gabarito antialiased bg-mid text-text `}
         >
 
-        <div className={"flex flex-col justify-between min-h-screen  bg-gradient-to-t from-mid to-dark"}>
+        <div className={"flex flex-col justify-between min-h-screen bg-gradient-to-t from-mid to-dark"}>
             {/*Header*/}
             {/*<SiteHeader />*/}
 
@@ -40,7 +46,7 @@ export default function RootLayout({
                 {children}
             </main>
 
-            <footer className="bg-mid-light text-text p-10 w-full   border-t-4 border-border">
+            <footer className="bg-mid-light text-text p-10 w-full border-t-4 border-border">
                 <p>© 2025 Digitulp Ltd</p>
             </footer>
         </div>
