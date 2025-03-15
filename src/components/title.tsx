@@ -74,80 +74,97 @@ export default function Title() {
 
     return (
         <div className="flex flex-col items-center justify-center h-full ">
-            <div
-                className={"flex relative items-center h-28 cursor-default"}
-                onMouseMove={(event) => onHover(event)}
-                onMouseLeave={() => setRelativeMousePos(null)}
+            <motion.div
+                initial={{scaleX: 0.8, opacity: 0, y: -50}}
+                whileInView={{scaleX: 1, opacity: 1, y: 0}}
+                transition={{duration: 0.3}}
+                viewport={{ once: true }}
             >
-                {titleText.split("").map((l, i) => (
-                    <div key={i}>
-                        <motion.h1
-                            className={`font-bold text-white font-chango z-20 relative`}
-                            // style={{ fontSize: `${calculateLetterSize(i)}rem` }}
-                            style={{ fontSize: `${getTextMultiplier(windowWidth) * 7}rem` }}
-                            animate={{
-                                fontSize: `${calculateCharSize(7, 9, i)}rem`,
-                            }}
-                            transition={{
-                                duration: 0.1,
-                            }}
-                        >
-                            {l}
-                        </motion.h1>
-                        <motion.h1
-                            className={`font-bold text-black font-chango -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 z-10 relative`}
-                            // style={{ fontSize: `${calculateLetterSize(i)}rem` }}
-                            style={{
-                                fontSize: `${getTextMultiplier(windowWidth) * 7}rem`,
-                                filter: `blur(0px)`,
-                                opacity: 0,
-                            }}
-                            animate={{
-                                fontSize: `${calculateCharSize(7, 9, i)}rem`,
-                                opacity: `${calculateParameter(0.3, 0.1, i)}`,
-                                filter: `blur(${calculateParameter(0, 10, i)}px)`
-                            }}
-                            transition={{
-                                duration: 1,
-                            }}
-                        >
-                            {l}
-                        </motion.h1>
-                    </div>
-                ))}
-            </div>
-            <hr className="border-t-2 border-white z-20 -mt-6 sm:-mt-2 md:mt-2 lg:mt-4 w-[280px] sm:w-[420px] md:w-[560px] lg:w-[700px]" />
-            <div className={"flex relative items-center font-bold text-white text-opacity-70 mt-2 text-sm sm:text-xl md:text-2xl lg:text-3xl z-50"}>
+                <div
+                    className={"flex relative items-center h-28 cursor-default"}
+                    onMouseMove={(event) => onHover(event)}
+                    onMouseLeave={() => setRelativeMousePos(null)}
+                >
+                    {titleText.split("").map((l, i) => (
+                        <div key={i}>
+                            <motion.h1
+                                className={`font-bold text-white font-chango z-20 relative select-none`}
+                                style={{ fontSize: `${getTextMultiplier(windowWidth) * 7}rem` }}
+                                animate={{
+                                    fontSize: `${calculateCharSize(7, 9, i)}rem`,
+                                }}
+                                transition={{
+                                    duration: 0.1,
+                                }}
+                            >
+                                {l}
+                            </motion.h1>
+                            <motion.h1
+                                className={`font-bold text-black font-chango -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 z-10 relative select-none`}
+                                style={{
+                                    fontSize: `${getTextMultiplier(windowWidth) * 7}rem`,
+                                    filter: `blur(0px)`,
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    fontSize: `${calculateCharSize(7, 9, i)}rem`,
+                                    opacity: `${calculateParameter(0.3, 0.1, i)}`,
+                                    filter: `blur(${calculateParameter(0, 10, i)}px)`
+                                }}
+                                transition={{
+                                    duration: 1,
+                                }}
+                            >
+                                {l}
+                            </motion.h1>
+                        </div>
+                    ))}
+                </div>
+            </motion.div>
+            <motion.hr
+                className="border-t-2 border-white z-20 -mt-6 sm:-mt-2 md:mt-2 lg:mt-2 w-[280px] sm:w-[420px] md:w-[560px] lg:w-[700px]"
+                initial={{scaleX: 0, opacity: 0}}
+                whileInView={{scaleX: 1, opacity: 1}}
+                transition={{duration: 0.5, delay: 0.3}}
+                viewport={{ once: true }}
+            />
+            <motion.div
+                className={"flex relative items-center text-white text-opacity-70 mt-2 text-sm sm:text-xl md:text-2xl lg:text-3xl z-50"}
+                initial={{y: 100, opacity: 0}}
+                whileInView={{y: 0, opacity: 1}}
+                transition={{duration: 0.5, delay: 0.6}}
+                viewport={{ once: true }}
+            >
                 <motion.h2
                     className="text-white cursor-pointer"
-                    initial={{color: "#FFFFFF", scale: 1}}
-                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem" }}
+                    initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
+                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
                 >
                     Tech Solutions
                 </motion.h2>
-                <h2 className={"mx-2"}>|</h2>
+                <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2
                     className="text-white cursor-pointer"
-                    initial={{color: "#FFFFFF", scale: 1}}
-                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem" }}
+                    initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
+                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
                 >
                     Web Design
                 </motion.h2>
-                <h2 className={"mx-2"}>|</h2>
+                <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2
                     className="text-white cursor-pointer"
-                    initial={{color: "#FFFFFF", scale: 1}}
-                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem" }}
+                    initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
+                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
                 >
                     Digital Art
                 </motion.h2>
-            </div>
+            </motion.div>
         </div>
     );
 }
