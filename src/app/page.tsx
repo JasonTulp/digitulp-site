@@ -67,8 +67,8 @@ export default function Home() {
 
             {/* Black Section */}
             <div className="h-28 -mt-28 w-full bg-gradient-to-t from-dark to-transparent"></div>
-            {/*<ProjectShowcase />*/}
-            <div className="flex items-center h-[100vh] bg-dark z-20 relative"></div>
+            <ProjectShowcase />
+            {/* <div className="flex items-center h-[100vh] bg-dark z-20 relative"></div> */}
 
 
         </div>
