@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import MaskedImage from "@/components/masked-image";
 
 // Sample data (replace with actual data)
@@ -23,64 +23,65 @@ const projectData = [
 ];
 
 export default function ProjectShowcase() {
-    const [scrollPosition, setScrollPosition] = useState(0);
-
-    // Track scroll position
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollPosition(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
+    const containerRef = useRef(null);
+    
     return (
-        <div className="w-full pt-16">
+        <div className="w-full pt-16" ref={containerRef}>
             <div className="flex flex-col items-center">
                 {projectData.map((project, index) => {
-                    // const offset = scrollPosition - 200 * index;  // Adjust to control the scroll distance to start animation
-                    // const startPosition = Math.max(100 + offset, 100); // Ensure it doesn't go out of bounds
-                    const initialPos = index % 2 === 0 ? "95%" : "-95%";
+                    const elementRef = useRef(null);
+                    const { scrollYProgress } = useScroll({
+                        target: elementRef,
+                        offset: ["start end", "end start"]
+                    });
+                    
+                    const smoothX = useSpring(
+                        useTransform(
+                            scrollYProgress,
+                            [0, 0.2, 0.5, 0.8, 1],
+                            ["95%", "0%", "0%", "0%", "-95%"]
+                        ),
+                        {
+                            stiffness: 200,
+                            damping: 30,
+                            restDelta: 0.001
+                        }
+                    );
+
                     return (
-                        // Outer div which spans entire screen
                         <div
                             key={project.id}
+                            ref={elementRef}
                             className="w-full text-white rounded-lg flex items-center bg-dark z-20 relative py-24"
                         >
                             <motion.div
-                                initial={{x: initialPos}}
-                                whileInView={{x: 0}}
-                                transition={{duration: 0.3}}
-                                viewport={{ once: true }}
+                                style={{ x: smoothX }}
                                 className={"mx-36 w-full border-border bg-gradient-to-t to-mid from-transparent"}>
                                 <img
                                     src={project.image}
                                     alt={project.title}
                                     className="w-full h-96 object-cover rounded-lg mb-4"
                                 />
-                                {/*<MaskedImage src={project.image} alt={project.title} className="w-full h-96 object-cover rounded-lg mb-4"/>*/}
-                                <motion.h3
-                                    className="text-xl font-semibold"
-                                    initial={{y: 100, opacity: 0}}
-                                    whileInView={{y: 0, opacity: 1}}
-                                    transition={{duration: 0.5}}
-                                    viewport={{ once: true }}
-                                >
-                                    {project.title}
-                                </motion.h3>
-                                <motion.p
-                                    className="mt-2 text-sm"
-                                    initial={{y: 100, opacity: 0}}
-                                    whileInView={{y: 0, opacity: 1}}
-                                    transition={{duration: 0.5}}
-                                    viewport={{ once: true }}
-                                >
-                                    {project.description}
-                                </motion.p>
+                                <div className="border-l-2 border-white/20 pl-4">
+                                    <motion.h3
+                                        className="text-xl font-semibold"
+                                        style={{ 
+                                            y: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [100, 0, 0, 0]),
+                                            opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 1, 1, 0])
+                                        }}
+                                    >
+                                        {project.title}
+                                    </motion.h3>
+                                    <motion.p
+                                        className="mt-2 text-sm"
+                                        style={{ 
+                                            y: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [100, 0, 0, 0]),
+                                            opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 1, 1, 0])
+                                        }}
+                                    >
+                                        {project.description}
+                                    </motion.p>
+                                </div>
                             </motion.div>
                         </div>
                     );
