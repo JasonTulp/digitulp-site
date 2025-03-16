@@ -2,6 +2,31 @@
 import {useEffect, useState} from "react";
 import * as motion from "motion/react-client";
 
+// Color utility functions
+const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : {r: 0, g: 0, b: 0};
+};
+
+const rgbToHex = (r: number, g: number, b: number) => {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+};
+
+const interpolateColor = (startColor: string, endColor: string, ratio: number) => {
+    const startRgb = hexToRgb(startColor);
+    const endRgb = hexToRgb(endColor);
+    
+    const r = Math.round(startRgb.r + ratio * (endRgb.r - startRgb.r));
+    const g = Math.round(startRgb.g + ratio * (endRgb.g - startRgb.g));
+    const b = Math.round(startRgb.b + ratio * (endRgb.b - startRgb.b));
+    
+    return rgbToHex(r, g, b);
+};
+
 interface ShapeProps {
     fixedHeight?: number;
     shapeCount: number;
@@ -12,6 +37,9 @@ interface ShapeProps {
     parallaxMultiplier?: number;
     ySpread?: number;
     yOffset?: number;
+    colour?: string; // start colour
+    colourAdjust?: string; // End colour, if specified will choose random from gradient
+    zIndex?: number; // Control the stacking order
 }
 
 // Interface for an individual shape
@@ -22,11 +50,13 @@ interface Shape {
     size: number;
     animation_duration: number;
     opacity: number;
+    colour: string;
 }
 
-export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize, maxOpacity, parallaxMultiplier, ySpread, yOffset, extraClassName }: ShapeProps) {
+export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize, maxOpacity, parallaxMultiplier, ySpread, yOffset, extraClassName, colour, colourAdjust, zIndex = 0 }: ShapeProps) {
     const [shapes, setShapes] = useState<Shape[]>([]);
     const [scrollYPos, setScrollYPos] = useState(0);
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,6 +72,8 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
         const offset = yOffset ?? window.innerHeight / 4;
         const opacity = maxOpacity ?? 1;
         const width = Math.max(window.innerWidth, 3840);
+        let shapeColour = colour ?? "#0b0d0f";
+
         const newShapes = Array.from({ length: shapeCount }, (_, i) => ({
             id: i,
             x: Math.random() * width * 1.2,
@@ -49,12 +81,17 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
             size: Math.random() * (maxSize - minSize) + minSize,
             animation_duration: Math.random() * 10 + 10,
             opacity: Math.random() * opacity + 0.001,
+            colour: colourAdjust 
+                ? interpolateColor(shapeColour, colourAdjust, Math.random()) 
+                : shapeColour,
         }));
         setShapes(newShapes);
     }, []);
 
+
+
     return (
-        <div className="relative h-0">
+        <div className="relative h-0" style={{ zIndex }}>
             {shapes.map((shape) => {
                 // Offset based on parallax
                 const multiplier = parallaxMultiplier ?? 1;
@@ -63,7 +100,9 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
                 const randomWidth = Math.random() * (maxSize - minSize) + minSize;
                 const randomHeight = fixedHeight ?? randomWidth;
                 const extra = extraClassName ?? "";
-                const cName = "absolute rounded-full bg-dark " + extra;
+
+                const cName = "absolute rounded-full " + extra;
+
                 return (
                     <motion.div
                         key={shape.id}
@@ -74,6 +113,7 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
                             left: shape.x - shape.size / 2,
                             top: shape.y - parallaxOffset,
                             opacity: shape.opacity,
+                            backgroundColor: shape.colour,
                         }}
                         animate={{
                             // left: shape.x - Math.random() * randomSize,

@@ -136,9 +136,9 @@ export default function Title() {
                 viewport={{ once: true }}
             >
                 <motion.h2
-                    className="text-white cursor-pointer"
+                    className="text-white cursor-default"
                     initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
-                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
+                    // whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
                 >
@@ -146,9 +146,9 @@ export default function Title() {
                 </motion.h2>
                 <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2
-                    className="text-white cursor-pointer"
+                    className="text-white cursor-default"
                     initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
-                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
+                    // whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
                 >
@@ -156,9 +156,9 @@ export default function Title() {
                 </motion.h2>
                 <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2
-                    className="text-white cursor-pointer"
+                    className="text-white cursor-default"
                     initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
-                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
+                    // whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
                 >

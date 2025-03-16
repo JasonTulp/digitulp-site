@@ -3,17 +3,8 @@
 import Image from "next/image";
 import { motion, useAnimate } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-
-const images = [
-    "/images/image_1.jpg",
-    "/images/image_1.jpg",
-    "/images/image_1.jpg",
-    "/images/image_1.jpg",
-    "/images/image_1.jpg",
-    "/images/image_1.jpg",
-    "/images/image_1.jpg",
-    "/noise.png",
-];
+import HorizontalRule from "./horizontal-rule";
+import defaultImages from "@/data/images";
 
 // Image component
 interface ScrollerImageProps {
@@ -26,9 +17,10 @@ function ScrollerImage({ src, index, setIsHovering }: ScrollerImageProps) {
     return (
         <motion.div 
             className="relative w-[300px] h-[300px] rounded-lg overflow-hidden"
+            style={{ zIndex: 40 }}
             whileHover={{ 
                 scale: 1.2,
-                zIndex: 20
+                zIndex: 50
             }}
             onHoverStart={() => setIsHovering(true)}
             onHoverEnd={() => setIsHovering(false)}
@@ -49,16 +41,26 @@ function ScrollerImage({ src, index, setIsHovering }: ScrollerImageProps) {
     );
 }
 
-export default function ImageScroller() {
+interface ImageScrollerProps {
+    direction?: 'left' | 'right';
+    images?: string[];
+    baseDuration?: number;
+}
+
+export default function ImageScroller({ direction = 'left', images = defaultImages, baseDuration = 2 }: ImageScrollerProps) {
     const [isHovering, setIsHovering] = useState(false);
     const [scope, animate] = useAnimate();
     const animationRef = useRef<any>(null);
 
+    const duration = images.length * baseDuration * 2;
+
     // Start animation only once
     useEffect(() => {
         // Create and store the animation
-        animationRef.current = animate(scope.current, { x: "-50%" }, { 
-            duration: 15, 
+        const xValue = direction === 'left' ? "-50%" : "50%";
+        
+        animationRef.current = animate(scope.current, { x: xValue }, { 
+            duration: duration, 
             ease: "linear", 
             repeat: Infinity,
             repeatType: "loop"
@@ -70,7 +72,7 @@ export default function ImageScroller() {
                 animationRef.current.stop();
             }
         };
-    }, [animate, scope]); // Only run once on mount
+    }, [animate, scope, direction]); // Run when direction changes
 
     // Handle hover state changes
     useEffect(() => {
@@ -86,13 +88,14 @@ export default function ImageScroller() {
     }, [isHovering]);
 
     return (
-        <div className="w-full overflow-x-hidden bg-transparent py-24 relative">
+        <div className="w-full overflow-x-hidden bg-transparent relative">
             {/* Left side blur gradient */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark to-transparent z-10"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark to-transparent" style={{ zIndex: 60 }}></div>
             
             {/* Right side blur gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark to-transparent z-10"></div>
-            
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark to-transparent" style={{ zIndex: 60 }}></div>
+            <HorizontalRule/>
+             
             <motion.div 
                 ref={scope}
                 className="flex gap-4 w-max"
@@ -116,6 +119,7 @@ export default function ImageScroller() {
                     />
                 ))}
             </motion.div>
+            <HorizontalRule/>
         </div>
     );
 } 

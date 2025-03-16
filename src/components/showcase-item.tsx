@@ -23,13 +23,13 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
         return () => unsubscribe();
     }, [isExpanded, scrollYProgress]);
 
-    const imgAlign = (project.imgAlign ?? (project.id % 2 === 0 ? "left" : "right")) as "left" | "right" | "full";
+    const imgAlign = (project.imgAlign ?? (project.id % 2 !== 0 ? "left" : "right")) as "left" | "right" | "full";
 
     const smoothX = useSpring(
         useTransform(
             scrollYProgress,
             [0, 0.2, 0.5, 0.8, 1],
-            project.id % 2 === 0 
+            project.id % 2 !== 0 
                 ? ["15%", "0%", "0%", "0%", "0%"]
                 : ["-15%", "0%", "0%", "0%", "0%"]
         ),
@@ -58,16 +58,16 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
                 className={`${isExpanded ? "mx-4" : "mx-36"} w-full`}>
                 <div className={`flex ${isExpanded ? "flex-col" : imgAlign === "full" ? "flex-col" : "gap-4"} ${!isExpanded && imgAlign === "right" ? "flex-row-reverse" : "flex-row"}`}>
                     <div 
-                        className={`${isExpanded || imgAlign === "full" ? "w-full" : "w-2/3"} relative`}
+                        className={`${isExpanded || imgAlign === "full" ? "w-full" : "w-1/2"} relative`}
                     >
                         <motion.img
                             src={project.image}
                             alt={project.title}
-                            onClick={() => setIsExpanded(!isExpanded)}
+                            // onClick={() => setIsExpanded(!isExpanded)}
                             className={`w-full rounded-lg cursor-pointer ${
                                 isExpanded || imgAlign === "full" 
                                     ? "max-h-[80vh] object-contain" 
-                                    : "h-96 object-cover"
+                                    : "h-[400px] object-cover"
                             }`}
                             layoutId={`project-image-${project.id}`}
                             transition={{
@@ -87,12 +87,17 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
                             opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 1, 1, 1])
                         }}
                     >
-                        <h3 className="text-xl font-semibold">
+                        <h3 className="text-3xl font-semibold">
                             {project.title}
                         </h3>
                         <p className="mt-2 text-sm">
                             {project.description}
                         </p>
+                        {project.link && (
+                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-2 text-sm text-blue-500 hover:text-blue-700">
+                                View Project
+                            </a>
+                        )}
                     </motion.div>
                 </div>
             </motion.div>

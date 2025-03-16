@@ -12,9 +12,9 @@ interface ProjectShowcaseProps {
 
 export default function ProjectShowcase({ projects = codeProjects, title }: ProjectShowcaseProps) {
     const containerRef = useRef(null);
-    
+
     return (
-        <div className="w-full pt-16" ref={containerRef}>
+        <div className="w-full pt-16 relative z-10" ref={containerRef}>
             {title && (
                 <h2 className="text-3xl font-bold text-center mb-8 text-text z-10">{title}</h2>
             )}
