@@ -1,25 +1,27 @@
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
-
-// An individual project item
-export interface Project {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    imgAlign?: "left" | "right" | "full";
-}
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { Project } from "@/types/project";
 
 interface ShowcaseItemProps {
     project: Project;
 }
 
 export default function ShowcaseItem({ project }: ShowcaseItemProps) {
+    const [isExpanded, setIsExpanded] = useState(false);
     const elementRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: elementRef,
         offset: ["start end", "end start"]
     });
+
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.on("change", (latest) => {
+            if (isExpanded && (latest > 0.6 || latest < 0.05)) {
+                setIsExpanded(false);
+            }
+        });
+        return () => unsubscribe();
+    }, [isExpanded, scrollYProgress]);
 
     const imgAlign = (project.imgAlign ?? (project.id % 2 === 0 ? "left" : "right")) as "left" | "right" | "full";
 
@@ -49,25 +51,36 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
     return (
         <div
             ref={elementRef}
-            className="w-full text-white rounded-lg flex items-center bg-dark z-20 relative py-24"
+            className="w-full text-white rounded-lg flex items-center  z-20 relative py-24"
         >
             <motion.div
                 style={{ x: smoothX, opacity: smoothOpacity }}
-                className="mx-36 w-full">
-                <div className={`flex ${imgAlign === "full" ? "flex-col" : "gap-4"} ${imgAlign === "right" ? "flex-row-reverse" : "flex-row"}`}>
-                    <div className={`${imgAlign === "full" ? "w-full" : "w-2/3"}`}>
-                        <img
+                className={`${isExpanded ? "mx-4" : "mx-36"} w-full`}>
+                <div className={`flex ${isExpanded ? "flex-col" : imgAlign === "full" ? "flex-col" : "gap-4"} ${!isExpanded && imgAlign === "right" ? "flex-row-reverse" : "flex-row"}`}>
+                    <div 
+                        className={`${isExpanded || imgAlign === "full" ? "w-full" : "w-2/3"} relative`}
+                    >
+                        <motion.img
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-96 object-cover rounded-lg"
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className={`w-full rounded-lg cursor-pointer ${
+                                isExpanded || imgAlign === "full" 
+                                    ? "max-h-[80vh] object-contain" 
+                                    : "h-96 object-cover"
+                            }`}
+                            layoutId={`project-image-${project.id}`}
+                            transition={{
+                                layout: { duration: 0.3 }
+                            }}
                         />
                     </div>
                     <motion.div 
                         className={`
-                            ${imgAlign === "full" ? "mt-4" : ""}
-                            ${imgAlign === "right" ? "border-r-2 pr-4" : "border-l-2 pl-4"}
-                            ${imgAlign === "full" ? "w-full" : "w-1/3"}
-                            border-border flex flex-col justify-center
+                            ${imgAlign === "full" || isExpanded ? "mt-4" : ""}
+                            ${!isExpanded && (imgAlign === "right" ? "border-r-2 pr-4" : "border-l-2 pl-4")}
+                            ${imgAlign === "full" || isExpanded ? "w-full" : "w-1/3"}
+                            border-border flex flex-col justify-center ${isExpanded ? "mx-36" : "mx-0"}
                         `}
                         style={{ 
                             y: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [100, 0, 0, 0]),

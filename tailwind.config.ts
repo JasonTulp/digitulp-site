@@ -32,6 +32,15 @@ export default {
         chango: ['var(--font-chango)'],
         gabarito: ['var(--font-gabarito)'],
       },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        'scroll': 'scroll 20s linear infinite',
+      },
       // boxShadow: {
       //   "sharp": "4px 4px 0px 0px",
       //   "sharp-2": "2px 2px 0px 0px",

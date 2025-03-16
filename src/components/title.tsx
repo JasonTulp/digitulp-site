@@ -129,7 +129,7 @@ export default function Title() {
                 viewport={{ once: true }}
             />
             <motion.div
-                className={"flex relative items-center text-white text-opacity-70 mt-2 text-sm sm:text-xl md:text-2xl lg:text-3xl z-50"}
+                className={"flex relative items-center text-white text-opacity-70 mt-2 text-sm sm:text-xl md:text-2xl lg:text-3xl z-30"}
                 initial={{y: 100, opacity: 0}}
                 whileInView={{y: 0, opacity: 1}}
                 transition={{duration: 0.5, delay: 0.6}}
