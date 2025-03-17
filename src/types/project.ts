@@ -5,4 +5,5 @@ export interface Project {
     image: string;
     link?: string;
     imgAlign?: "left" | "right" | "full";
+    imageClassName?: string;
 } 

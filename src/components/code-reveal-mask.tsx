@@ -10,7 +10,6 @@ interface CodeRevealMaskProps {
 }
 
 export const CodeRevealMask = ({ 
-    codeText, 
     className = "",
     children
 }: CodeRevealMaskProps) => {
@@ -44,10 +43,15 @@ export const CodeRevealMask = ({
         setMousePos(newPos);
     };
 
+    const handleMouseLeave = () => {
+        setMousePos({ x: -10000, y: 0 });
+    };
+
     return (
         <div 
             ref={containerRef}
             onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             className={`relative overflow-hidden min-h-[500px] ${className}`}
         >
             {/* Base layer - visible content */}
@@ -59,7 +63,7 @@ export const CodeRevealMask = ({
             <div 
                 className="absolute inset-0"
                 style={{
-                    clipPath: `circle(250px at ${mousePos.x}px ${mousePos.y}px)`
+                    clipPath: `circle(180px at ${mousePos.x}px ${mousePos.y}px)`
                 }}
             >
                 <pre className="text-primary text-opacity-20 whitespace-pre-wrap font-mono text-xl px-36 overflow-hidden h-full p-4">

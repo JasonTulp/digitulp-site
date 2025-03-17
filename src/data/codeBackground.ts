@@ -1,15 +1,4 @@
 export const backgroundCode = `
-use crate::{
-	error,
-	error_handler::{Error, ErrorHandler},
-	expressions,
-	expressions::*,
-	statements,
-	statements::*,
-	token::{LiteralType, Token, TokenType},
-};
-use std::{cell::RefCell, rc::Rc};
-
 /// The parser struct handles incoming token streams and converts them into statements and
 /// expressions
 pub struct Parser {

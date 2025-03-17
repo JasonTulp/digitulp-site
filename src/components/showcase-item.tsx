@@ -30,8 +30,8 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
             scrollYProgress,
             [0, 0.2, 0.5, 0.8, 1],
             project.id % 2 !== 0 
-                ? ["15%", "0%", "0%", "0%", "0%"]
-                : ["-15%", "0%", "0%", "0%", "0%"]
+                ? ["-15%", "0%", "0%", "0%", "0%"]
+                : ["15%", "0%", "0%", "0%", "0%"]
         ),
         {
             stiffness: 100,
@@ -64,30 +64,43 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
                             src={project.image}
                             alt={project.title}
                             // onClick={() => setIsExpanded(!isExpanded)}
-                            className={`w-full rounded-lg cursor-pointer ${
+                            className={`w-full rounded-lg cursor-pointer 
+                                ${
                                 isExpanded || imgAlign === "full" 
                                     ? "max-h-[80vh] object-contain" 
                                     : "h-[500px] object-cover"
-                            }`}
+                                }
+                                ${project.imageClassName}
+                            `}
                             layoutId={`project-image-${project.id}`}
                             transition={{
                                 layout: { duration: 0.3 }
                             }}
+                            style={{
+                                opacity: useTransform(scrollYProgress, [0, 0.5, 0.7, 1], [0.2, 1, 1, 0])
+                            }}
                         />
                     </div>
+                    {/* Border */}
+                    <div className={
+                        `
+                            ${!isExpanded && (imgAlign === "right" ? "border-r-4" : "border-l-4")}
+                            border-border 
+                        `
+                    }></div>
                     <motion.div 
                         className={`
                             ${imgAlign === "full" || isExpanded ? "mt-4" : ""}
-                            ${!isExpanded && (imgAlign === "right" ? "border-r-2" : "border-l-2")}
                             ${imgAlign === "full" || isExpanded ? "w-full" : "w-1/3"}
-                            border-border flex p-8 backdrop-blur-sm flex-col justify-center ${isExpanded ? "mx-36" : "mx-0"}
+                             flex p-8 backdrop-blur-sm flex-col justify-center ${isExpanded ? "mx-36" : "mx-0"}
                         `}
                         style={{ 
-                            y: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [100, 0, 0, 0]),
-                            opacity: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [0, 1, 1, 1])
+                            y: useTransform(scrollYProgress, [0, 0.5, 0.6, 1], [100, 0, 0, -100]),
+                            opacity: useTransform(scrollYProgress, [0, 0.5, 0.6, 1], [0, 1, 1, 0]),
+                            scale: useTransform(scrollYProgress, [0, 0.5, 0.6, 1], [0.9, 1, 1, 0.9])
                         }}
                     >
-                        <h3 className="text-3xl font-semibold">
+                        <h3 className="text-3xl font-semibold text-[#9e7790]">
                             {project.title}
                         </h3>
                         <p className="mt-2 text-sm">

@@ -116,6 +116,13 @@ export default function Home() {
                         {/* <ImageScroller direction="left" images={imageSet2} baseDuration={2.3} /> */}
                         <ProjectShowcase projects={artProjects} />
                     </div>
+                    <div className="relative z-30">
+                        <SubHeader 
+                            title="CONTACT" 
+                            description="Get in touch if you want to work together or just say hi!"
+                        />
+                        {/* <ImageScroller direction="left" images={imageSet2} baseDuration={2.3} /> */}
+                    </div>
                 </CodeRevealMask>
             </div>
             
