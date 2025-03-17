@@ -8,6 +8,7 @@ import ParticleSpawner from "@/components/particle-spawner";
 import ProjectShowcase from "@/components/project-showcase";
 import ImageScroller from "@/components/image-scroller";
 import SubHeader from "@/components/sub-header";
+import { CodeRevealMask } from "@/components/code-reveal-mask";
 
 // Import project data
 import codeProjects from "@/data/codeProjects";
@@ -81,31 +82,44 @@ export default function Home() {
             <div className="h-28 -mt-28 w-full bg-gradient-to-t from-dark to-transparent z-10 relative"></div>
             
             {/* Sticky gradient blur */}
-            <div className="fixed top-0 z-25 w-full h-16 backdrop-blur-xl [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
+            <div className="fixed top-0 z-50 w-full h-16  [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
             <div className="h-32"></div>
             <div className="relative z-30">
-                <SubHeader 
-                    title="SOFTWARE" 
-                    description="Check out some of my past freelance work"
-                />
-                <ProjectShowcase projects={codeProjects}/>
+                <CodeRevealMask 
+                    codeText={`// Your code text will go here
+                    function example() {
+                        console.log("Hello World");
+                    }`}
+                    className="absolute inset-0"
+                >
+                    <div className="relative z-30">
+                        <SubHeader 
+                            title="SOFTWARE" 
+                            description="Check out some of my past freelance work"
+                        />
+                        <ProjectShowcase projects={codeProjects}/>
+                    </div>
+                    
+                    <div className="relative z-30">
+                        <SubHeader 
+                            title="GAME DEV" 
+                            description="Below are some of my Game Development projects"
+                        />
+                        <ProjectShowcase projects={gameProjects} />
+                    </div>
+                    <div className="relative z-30">
+                        <SubHeader 
+                            title="DIGITAL ART" 
+                            description="Explore my visual work and creative experiments"
+                        />
+                        <ImageScroller direction="left" images={imageSet1.concat(imageSet2)} baseDuration={1} />
+                        {/* <ImageScroller direction="left" images={imageSet2} baseDuration={2.3} /> */}
+                        <ProjectShowcase projects={artProjects} />
+                    </div>
+                </CodeRevealMask>
             </div>
-            <div className="relative z-30">
-                <SubHeader 
-                    title="GAME DEV" 
-                    description="Below are some of my Game Development projects"
-                />
-                <ProjectShowcase projects={gameProjects} />
-            </div>
-            <div className="relative z-30">
-                <SubHeader 
-                    title="DIGITAL ART" 
-                    description="Explore my visual work and creative experiments"
-                />
-                <ImageScroller direction="left" images={imageSet1.concat(imageSet2)} baseDuration={1} />
-                {/* <ImageScroller direction="left" images={imageSet2} baseDuration={2.3} /> */}
-                <ProjectShowcase projects={artProjects} />
-            </div>
+            
+            
             {/* <div className="flex items-center h-[100vh] bg-dark z-20 relative"></div> */}
 
         </div>

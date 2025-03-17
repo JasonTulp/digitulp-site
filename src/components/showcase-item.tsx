@@ -78,9 +78,9 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
                     <motion.div 
                         className={`
                             ${imgAlign === "full" || isExpanded ? "mt-4" : ""}
-                            ${!isExpanded && (imgAlign === "right" ? "border-r-2 pr-4" : "border-l-2 pl-4")}
+                            ${!isExpanded && (imgAlign === "right" ? "border-r-2" : "border-l-2")}
                             ${imgAlign === "full" || isExpanded ? "w-full" : "w-1/3"}
-                            border-border flex flex-col justify-center ${isExpanded ? "mx-36" : "mx-0"}
+                            border-border flex p-8 backdrop-blur-sm flex-col justify-center ${isExpanded ? "mx-36" : "mx-0"}
                         `}
                         style={{ 
                             y: useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [100, 0, 0, 0]),
