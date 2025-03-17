@@ -67,7 +67,7 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
                             className={`w-full rounded-lg cursor-pointer ${
                                 isExpanded || imgAlign === "full" 
                                     ? "max-h-[80vh] object-contain" 
-                                    : "h-[400px] object-cover"
+                                    : "h-[500px] object-cover"
                             }`}
                             layoutId={`project-image-${project.id}`}
                             transition={{

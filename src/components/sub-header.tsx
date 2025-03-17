@@ -9,9 +9,9 @@ interface SubHeaderProps {
 
 export default function SubHeader({ title, description }: SubHeaderProps) {
   return (
-    <header className="w-full py-12 text-center">
+    <header className="w-full pb-8 pt-52 text-center">
       <motion.div className="mb-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-text"
+        <h1 className="text-4xl md:text-5xl font-bold text-text font-chango"
           style={{
             background: "linear-gradient(to right, #d45d1e, #3b82f6)",
             WebkitBackgroundClip: "text",

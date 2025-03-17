@@ -13,7 +13,7 @@ const gabarito = Gabarito({
 const chango = Chango({
     variable: "--font-chango",
     subsets: ["latin"],
-    weight: ["400"]
+    weight: ["400"],
 });
 
 export default function RootLayout({
