@@ -2,6 +2,10 @@
 import {useEffect, useState} from "react";
 import * as motion from "motion/react-client";
 
+const isMobile = () => {
+    return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+};
+
 // Color utility functions
 const hexToRgb = (hex: string) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -57,7 +61,6 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
     const [shapes, setShapes] = useState<Shape[]>([]);
     const [scrollYPos, setScrollYPos] = useState(0);
 
-
     useEffect(() => {
         const handleScroll = () => {
             setScrollYPos(window.scrollY);
@@ -71,10 +74,11 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
         const spread = ySpread ?? 300;
         const offset = yOffset ?? window.innerHeight / 4;
         const opacity = maxOpacity ?? 1;
-        const width = Math.max(window.innerWidth, 3840);
+        const width = isMobile() ? window.innerWidth : Math.max(window.innerWidth, 3840);
+        const count = isMobile() ? Math.floor((window.innerWidth / 3840) * shapeCount) : shapeCount;
         let shapeColour = colour ?? "#0b0d0f";
 
-        const newShapes = Array.from({ length: shapeCount }, (_, i) => ({
+        const newShapes = Array.from({ length: count }, (_, i) => ({
             id: i,
             x: Math.random() * width * 1.2,
             y: Math.random() * spread - offset,
@@ -87,8 +91,6 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
         }));
         setShapes(newShapes);
     }, []);
-
-
 
     return (
         <div className="relative h-0" style={{ zIndex }}>

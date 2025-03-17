@@ -46,7 +46,7 @@ export default function RootLayout({
                 {children}
             </main>
 
-            <footer className="bg-mid-light text-text p-10 w-full border-t-4 border-border">
+            <footer className="bg-mid text-text p-10 w-full border-t-2 border-border">
                 <p>© 2025 Digitulp Ltd</p>
             </footer>
         </div>

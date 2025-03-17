@@ -10,11 +10,11 @@ const codeProjects: Project[] = [
     },
     {
         id: 2,
-        title: "JASN Interpreted ProgrammingLanguage",
+        title: "Interpreted Programming Language",
         description: "I developed an Abstract Syntax Tree Interpreted language in Rust to further solidify my programming knowledge.",
         link: "https://github.com/JasonTulp/AST-interpreter",
         image: "/JASN_AST_3.png",
-        imageClassName: "object-left"
+        imagePosition: "left" 
     },
     { 
         id: 3, 

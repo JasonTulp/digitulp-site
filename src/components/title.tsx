@@ -72,8 +72,19 @@ export default function Title() {
         return multiplier
     }
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+
     return (
-        <div className="flex flex-col items-center justify-center h-full ">
+        <div className="flex flex-col items-center justify-center h-full">
             <motion.div
                 initial={{scaleX: 0.8, opacity: 0, y: -50}}
                 whileInView={{scaleX: 1, opacity: 1, y: 0}}
@@ -136,31 +147,34 @@ export default function Title() {
                 viewport={{ once: true }}
             >
                 <motion.h2
-                    className="text-white cursor-default"
+                    className="text-white cursor-pointer"
                     initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
-                    // whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
+                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
+                    onClick={() => { scrollToSection('software') }}
                 >
-                    Tech Solutions
+                    Software
                 </motion.h2>
                 <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2
-                    className="text-white cursor-default"
+                    className="text-white cursor-pointer"
                     initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
-                    // whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
+                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
+                    onClick={() => { scrollToSection('game-dev') }}
                 >
-                    Web Design
+                    Game Dev
                 </motion.h2>
                 <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2
-                    className="text-white cursor-default"
+                    className="text-white cursor-pointer"
                     initial={{color: "#FFFFFF", scale: 1, fontWeight: "normal"}}
-                    // whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
+                    whileHover={{ color: "#f97316", scale: 1.2, margin: "0 1rem", fontWeight: "bold" }}
                     transition={{ duration: 0.2 }}
                     layout
+                    onClick={() => { scrollToSection('digital-art') }}
                 >
                     Digital Art
                 </motion.h2>

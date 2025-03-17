@@ -66,7 +66,7 @@ export const CodeRevealMask = ({
                     clipPath: `circle(180px at ${mousePos.x}px ${mousePos.y}px)`
                 }}
             >
-                <pre className="text-primary text-opacity-20 whitespace-pre-wrap font-mono text-xl px-36 overflow-hidden h-full p-4">
+                <pre className="text-primary text-opacity-20 whitespace-pre-wrap font-mono text-sm lg:text-xl px-2 lg:px-36 overflow-hidden h-full p-4">
                     {backgroundCode}
                 </pre>
             </div>

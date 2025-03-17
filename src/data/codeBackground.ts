@@ -286,25 +286,21 @@ impl Parser {
 					value,
 				})));
 			} else if let Expr::Index(index) = &expr {
-				// return Ok(Expr::Set(Box::new(Set {
-				// 	object: Expr::Index(index.clone()),
-				// 	name: Token {
-				// 		token_type: TokenType::String,
-				// 		lexeme: "LEXEME".to_string(),
-				// 		literal: LiteralType::String("Idk".to_string()),
-				// 		line: operator.line,
-				// 	},
-				// 	value,
-				// })));
-				// return Ok(Expr::Set(Box::new(Set {
-				// 	object: index.object.clone(),
-				// 	name: index.index.clone(),
-				// 	value,
-				// })));
-				return Err(Error::ParseError(
-					operator,
-					"Ruh roh, Jason hasn't implemented Array assignment.".to_string(),
-				));
+				return Ok(Expr::Set(Box::new(Set {
+					object: Expr::Index(index.clone()),
+					name: Token {
+						token_type: TokenType::String,
+						lexeme: "LEXEME".to_string(),
+						literal: LiteralType::String("Idk".to_string()),
+						line: operator.line,
+					},
+					value,
+				})));
+				return Ok(Expr::Set(Box::new(Set {
+					object: index.object.clone(),
+					name: index.index.clone(),
+					value,
+				})));
 			}
 			return Err(Error::ParseError(operator, "Invalid assignment target.".to_string()));
 		}
