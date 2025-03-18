@@ -16,7 +16,7 @@ interface ScrollerImageProps {
 function ScrollerImage({ src, index, setIsHovering }: ScrollerImageProps) {
     return (
         <motion.div 
-            className="relative w-[300px] h-[300px] rounded-lg overflow-hidden"
+            className="relative w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] rounded-lg overflow-hidden"
             style={{ zIndex: 40 }}
             whileHover={{ 
                 scale: 1.2,
@@ -90,10 +90,10 @@ export default function ImageScroller({ direction = 'left', images = defaultImag
     return (
         <div className="w-full overflow-x-hidden bg-transparent relative">
             {/* Left side blur gradient */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark to-transparent" style={{ zIndex: 60 }}></div>
+            <div className="absolute left-0 top-0 bottom-0 w-4 sm:w-16 md:w-24 lg:w-48 bg-gradient-to-r from-dark to-transparent" style={{ zIndex: 60 }}></div>
             
             {/* Right side blur gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark to-transparent" style={{ zIndex: 60 }}></div>
+            <div className="absolute right-0 top-0 bottom-0 w-4 sm:w-16 md:w-24 lg:w-48 bg-gradient-to-l from-dark to-transparent" style={{ zIndex: 60 }}></div>
             <HorizontalRule/>
              
             <motion.div 
