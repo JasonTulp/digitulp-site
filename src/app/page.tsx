@@ -46,6 +46,9 @@ export default function Home() {
     return (
         // <div className="w-full min-h-[200vh] overflow-hidden bg-[url('/noise.png')] bg-repeat bg-[length:200px_200px] opacity-5 ">
         <div className="w-full min-h-[200vh] overflow-hidden bg-dark">
+            {/*Clouds (z-index: 1)*/}
+            <ShapeSpawner zIndex={1} colour={"#FFFFFF"} maxOpacity={0.05} shapeCount={20} minSize={400} maxSize={700} ySpread={200} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={900}/>
+
             {/* Orange Section - Gradient Background (z-index: 0 - at the very back) */}
             <div
                 className="h-[100vh] relative z-0"
@@ -61,8 +64,6 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="relative"
             >
-                {/*Clouds (z-index: 1)*/}
-                <ShapeSpawner zIndex={1} colour={"#FFFFFF"} maxOpacity={0.1} shapeCount={30} minSize={400} maxSize={700} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={windowHeight + 1000}/>
 
                 {/*Back Pillars (z-index: 2)*/}
                 <ShapeSpawner zIndex={2} maxOpacity={0.06} shapeCount={20} minSize={400} maxSize={600} parallaxMultiplier={0.5} fixedHeight={1000} yOffset={windowHeight * 0.5}/>
