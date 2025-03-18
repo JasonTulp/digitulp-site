@@ -120,14 +120,14 @@ export default function ShowcaseItem({ project }: ShowcaseItemProps) {
                         }}
                     >
                         <motion.h3 
-                            className="text-3xl font-semibold pb-4 text-[#9e7790]"
+                            className="text-3xl xl:text-5xl font-semibold pb-4 text-[#9e7790]"
                             style={{
                                 color: useTransform(scrollYProgress, [0, 1], ["#d45d1e", "#3f9de0"])
                             }}
                         >
                             {project.title}
                         </motion.h3>
-                        <p className="mt-2 text-md pb-4">
+                        <p className="mt-2 text-md xl:text-xl pb-4">
                             {project.description}
                         </p>
                         {project.link && (
