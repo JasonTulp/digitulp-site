@@ -16,7 +16,7 @@ import webProjects from "@/data/webProjects";
 import artProjects from "@/data/artProjects";
 import { imageSet1, imageSet2 } from "@/data/images";
 import gameProjects from "@/data/gameProjects";
-
+import ContactForm from "@/components/contact-form";
 export default function Home() {
     const [gradientAngle, setGradientAngle] = useState<number>(0);
     const [windowHeight, setWindowHeight] = useState(1000); // Default value for SSR
@@ -87,16 +87,12 @@ export default function Home() {
             <div className="h-32"></div>
             <div className="relative z-30">
                 <CodeRevealMask 
-                    codeText={`// Your code text will go here
-                    function example() {
-                        console.log("Hello World");
-                    }`}
                     className="absolute inset-0"
                 >
                     <div className="relative z-30">
                         <SubHeader 
                             id="software"
-                            title="SOFTWARE" 
+                            title="TECH SOLUTIONS" 
                             description="Check out some of my past freelance work and personal projects"
                         />
                         <ProjectShowcase projects={codeProjects}/>
@@ -126,7 +122,9 @@ export default function Home() {
                             description="Get in touch if you want to work together or just say hi!"
                         />
                         {/* <ImageScroller direction="left" images={imageSet2} baseDuration={2.3} /> */}
+                        <ContactForm />
                     </div>
+                    
                 </CodeRevealMask>
             </div>
             

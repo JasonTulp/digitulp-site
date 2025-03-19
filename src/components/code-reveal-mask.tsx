@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { backgroundCode } from '@/data/codeBackground';
 
 interface CodeRevealMaskProps {
-    codeText: string;
     maskSize?: number; // diameter of the reveal circle in pixels
     className?: string;
     children?: React.ReactNode;

@@ -4,7 +4,7 @@ const codeProjects: Project[] = [
     {
         id: 1,
         title: "Naylor Love Sign-in Monitor",
-        description: "This sign in monitor was created to help Naylor Love keep track of their employee sign in times using Gallagher turnstiles. The turnstils would automatically send data to the monitor which would then let the site managers filter and easily see who was on site at what time.",
+        description: "This sign in monitor was created to help Naylor Love keep track of their employee sign in times on site. The turnstiles would automatically send data to the monitor which would then let the site managers filter and easily see who was on site at what time.",
         image: "/naylor-love-sign-in.jpeg",
         link: "https://github.com/JasonTulp/naylor-love-sign-in-monitor"
     },

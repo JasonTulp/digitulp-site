@@ -31,6 +31,7 @@ export default {
       fontFamily: {
         chango: ['var(--font-chango)'],
         gabarito: ['var(--font-gabarito)'],
+        modak: ['var(--font-modak)'],
       },
       keyframes: {
         scroll: {

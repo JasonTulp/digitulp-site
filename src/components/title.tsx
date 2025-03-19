@@ -154,7 +154,7 @@ export default function Title() {
                     layout
                     onClick={() => { scrollToSection('software') }}
                 >
-                    Software
+                    Tech Solutions
                 </motion.h2>
                 <h2 className={"mx-2 select-none"}>|</h2>
                 <motion.h2

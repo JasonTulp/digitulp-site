@@ -2,7 +2,7 @@
 import "./globals.css";
 import cn from '@sindresorhus/class-names';
 
-import { Gabarito, Chango } from "next/font/google";
+import { Gabarito, Chango, Modak } from "next/font/google";
 
 const gabarito = Gabarito({
     variable: "--font-gabarito",
@@ -16,6 +16,12 @@ const chango = Chango({
     weight: ["400"],
 });
 
+const modak = Modak({
+    variable: "--font-modak",
+    subsets: ["latin"],
+    weight: ["400"],
+});
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -25,7 +31,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={cn(gabarito.variable, chango.variable)}
+            className={cn(gabarito.variable, chango.variable, modak.variable)}
         >
         <head>
             <title>Digitulp</title>

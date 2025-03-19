@@ -102,7 +102,6 @@ export default function ShapeSpawner({ fixedHeight, shapeCount, minSize, maxSize
                 const randomWidth = Math.random() * (maxSize - minSize) + minSize;
                 const randomHeight = fixedHeight ?? randomWidth;
                 const extra = extraClassName ?? "";
-
                 const cName = "absolute rounded-full " + extra;
 
                 return (
