@@ -16,7 +16,7 @@ const gameProjects: Project[] = [
     {
         id: 3,
         title: "Hex Defence",
-        description: "Hex Defense is a take on a tower defence game set on a procedurally generated hexagonal grid where you fight endless waves of alien enemies.",
+        description: "Hex Defense is a tower defence game set on a procedurally generated hexagonal grid where you fight endless waves of alien enemies.",
         image: "/hex-defence.gif",
     },
     {

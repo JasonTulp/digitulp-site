@@ -11,7 +11,7 @@ const codeProjects: Project[] = [
     {
         id: 2,
         title: "Interpreted Programming Language",
-        description: "I developed an Abstract Syntax Tree Interpreted language in Rust to further solidify my programming knowledge.",
+        description: "I developed an Abstract Syntax Tree Interpreted language in Rust to further solidify my programming knowledge. Although I wouldn't recommend using it for anything practical, I learnt a lot about programming languages and useful design patterns.",
         link: "https://github.com/JasonTulp/AST-interpreter",
         image: "/JASN_AST_3.png",
         imagePosition: "left" 

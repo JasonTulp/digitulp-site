@@ -102,7 +102,7 @@ export default function Home() {
                         <SubHeader 
                             id="game-dev"
                             title="GAME DEV" 
-                            description="Below are some of my more recentGame Development projects, all developed solo in Unity"
+                            description="Below are some of my more recent Game Development projects, all developed solo in Unity"
                         />
                         <ProjectShowcase projects={gameProjects} />
                     </div>
@@ -110,7 +110,7 @@ export default function Home() {
                         <SubHeader 
                             id="digital-art"
                             title="DIGITAL ART" 
-                            description="Explore some highlights frommy visual work and digital art pieces"
+                            description="Explore some highlights from my visual work and digital art pieces"
                         />
                         <ImageScroller direction="left" images={imageSet1.concat(imageSet2)} baseDuration={1} />
                         {/* <ImageScroller direction="left" images={imageSet2} baseDuration={2.3} /> */}
