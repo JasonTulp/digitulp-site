@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
             <br />
             <strong className="text-primary text-xl">Information Collection and Use</strong>
             <p>The Application collects information when you download and use it. This information may include information such as </p>
-            <ul>
+            <ul className="list-disc pl-10 space-y-1">
                 <li>Your device&apos;s Internet Protocol address (e.g. IP address)</li>
                 <li>The pages of the Application that you visit, the time and date of your visit, the time spent on those pages</li>
                 <li>The time spent on the Application</li>
@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
             <p>The Application does not gather precise information about the location of your mobile device.</p>
             <div style={{ display: "none" }}>
                 <p>The Application collects your device&apos;s location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:</p>
-                <ul>
+                <ul className="list-disc pl-10 space-y-1">
                     <li>Geolocation Services: The Service Provider utilizes location data to provide features such as personalized content, relevant recommendations, and location-based services.</li>
                     <li>Analytics and Improvements: Aggregated and anonymized location data helps the Service Provider to analyze user behavior, identify trends, and improve the overall performance and functionality of the Application.</li>
                     <li>Third-Party Services: Periodically, the Service Provider may transmit anonymized location data to external services. These services assist them in enhancing the Application and optimizing their offerings.</li>
@@ -35,14 +35,14 @@ export default function PrivacyPolicy() {
             <div>
                 <br />
                 <p>Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:</p>
-                <ul>
+                <ul className="list-disc pl-10 space-y-1">
                     <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
                     <li><a href="https://unity3d.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Unity</a></li>
                 </ul>
             </div>
             <br />
             <p>The Service Provider may disclose User Provided and Automatically Collected Information:</p>
-            <ul>
+            <ul className="list-disc pl-10 space-y-1">
                 <li>as required by law, such as to comply with a subpoena, or similar legal process;</li>
                 <li>when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</li>
                 <li>with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.</li>
@@ -76,7 +76,7 @@ export default function PrivacyPolicy() {
             <strong className="text-primary text-xl">Changes</strong>
             <p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
             <br />
-            <p>This privacy policy is effective as of 2025-04-03</p>
+            <p>This privacy policy is effective as of 2025-04-04</p>
             <br />
             <strong className="text-primary text-xl">Your Consent</strong>
             <p>By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.</p>
