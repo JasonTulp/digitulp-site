@@ -12,11 +12,12 @@ import { CodeRevealMask } from "@/components/code-reveal-mask";
 
 // Import project data
 import codeProjects from "@/data/codeProjects";
-import webProjects from "@/data/webProjects";
 import artProjects from "@/data/artProjects";
 import { imageSet1, imageSet2 } from "@/data/images";
 import gameProjects from "@/data/gameProjects";
 import ContactForm from "@/components/contact-form";
+
+
 export default function Home() {
     const [gradientAngle, setGradientAngle] = useState<number>(0);
     const [windowHeight, setWindowHeight] = useState(1000); // Default value for SSR
